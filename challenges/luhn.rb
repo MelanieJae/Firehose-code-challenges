@@ -1,49 +1,73 @@
 class CreditCardNumber
 
 	def initialize(ccn)
-		@digits = ccn
+		@digits = []
+		@digits << ccn.split('')
+		@digits.each do |digit|
+			digit.to_i 
+		end
+		puts @digits
 	end	
 
 	def luhn_check
 			
 		#digit doubling loop
-		#since the doubling starts with the rightmost digit
-		#(or next to rightmost in an odd number array), the array indeces
-		#and elements are scanned in the reverse order.
+		
+		@dblarr = []
+		@digits.each_index do |i|
+			#create new array to put new values in after doubling every other digit
 			
-		@digits.reverse.each_index do |i|
-			# last index of 16 dig. array is 15 so
-			#to double every second digit, double only the odd digits 	
-			if (i % 2) != 0
-				newval = @digits[i] * 2
-				@digits[i] = newval	
-			#loop to check whether the doubled value is > 10 and
-			# subtract 9 if it is... 	
-				if @digits[i] >= 10
-					newval = @digits[i] - 9
-					@digits[i] = newval
+			if (i % 2) == 0				
+				@dblarr << @digits[i] * 2
+				#loop to check whether the doubled value is > 10 and
+				# subtract 9 if it is... 	
+				if (@digits[i] * 2) >= 10
+					@dblarr[i] = (@digits[i] * 2) - 9
 				end
-			end
+			else
+				@dblarr << @digits[i]	
+			end	
+			
 		end
-		puts @digits
+		
+		
 		#adding all digits in the cc number together...
-		@sum = 0	
-		@digits.each do |digit|
-			@sum = @sum + digit
-		end
+		puts @dblarr
+		sum = @dblarr.inject(:+) 
+		return (sum % 10 == 0)
 			
 		# notifying user if card number is valid or invalid
-		# if mod 10 = 0 it's valid otherwise it's invalid.
-		puts @sum
-		if @sum % 10 == 0
-			puts "This is a valid credit card number"
-		elsif @sum % 10 != 0
-			puts "This is NOT a valid credit card number."
-		end
+		# if mod 10 = 0 it's valid and returns 'true'
+		# otherwise it's invalid and returns 'false.
+		
+		
 	end	
+
 end
 
-ccnum = CreditCardNumber.new([4,1,9,4,5,6,0,3,8,5,0,0,8,5,0,4])
-ccnum.luhn_check
+# require 'minitest/autorun'
+
+# module Luhn
+# 	def self.is_valid?(number)
+# 		#IMPLEMENT ME
+# 	end
+# end
+
+# class TestLuhn < MiniTest::Unit::TestCase
+
+# 	def test_luhn_valid
+# 		assert Luhn.is_valid?(4194560385008504)
+# 	end
+
+# 	def test_luhn_invalid
+# 		assert ! Luhn.is_valid?(4194560385008505)
+# 	end
+
+# end
+
+ccnum = CreditCardNumber.new("4194560385008504")
+puts ccnum.luhn_check
+
+
 
 
