@@ -35,6 +35,11 @@ def dedup_nth_dup(arr, n)
 				@arr.each_index do |oi|
 					if @arr[oi] == @arr.uniq[ui]
 						@dupcountarray[ui] += 1
+					#store indeces of last counter element
+					#interrupt loop when any counter array element reaches n and take note of index oi at that point?
+					#finish incrementing counter array and for those orig array elements whose counter doesn't go
+					#above 1 spit those out as is and any counter >1 but less than n take note of index of that dupe
+					# and return that as the index for the dupe i want in the final array.	
 					end	
 
 					@dupcountarray.each do |di|
