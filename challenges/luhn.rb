@@ -1,12 +1,13 @@
 class CreditCardNumber
 
 	def initialize(ccn)
-		@digits = []
-		@digits << ccn.split('')
-		@digits.each do |digit|
-			digit.to_i 
+		
+		@digits = ccn.split('')
+		
+		@digits.each_index do |i|
+			 @digits[i] = @digits[i].to_i
 		end
-		puts @digits
+		
 	end	
 
 	def luhn_check

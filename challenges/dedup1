@@ -1,0 +1,7 @@
+public
+
+def dedup(array)
+	puts array.uniq
+end
+
+arr.dedup([0,1,1,3])
