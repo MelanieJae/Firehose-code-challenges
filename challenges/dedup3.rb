@@ -69,5 +69,5 @@ def dedup_nth_dup(arr, n)
 end
 
 array = []
-array.dedup_nth_dup([1,1,1,2,2,5,6,7,7,8], 3)
+array.dedup_nth_dup([1,1,1,2,2,5,6,7,7,8], 4)
 
