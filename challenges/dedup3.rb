@@ -10,7 +10,7 @@ def dedup_nth_dup(arr, n)
 	#loop that executes output of dupe depending on what n is
 	# n = 1 (i.e. 1st dupe)
 	if n == 1
-		return array.uniq
+		puts @arr.uniq
 	end
 	# if nth or last dupe (nth or last)
 	# so n may be equal to last depending on the array
@@ -18,7 +18,7 @@ def dedup_nth_dup(arr, n)
 	# but the 2nd dupe of 7 is returned b/c it's the last and it comes before the
 	# 3rd dupe which does not exist
 	
-
+	if n!= 1
 		if @arr.uniq.length != @arr.length
 		
 			#nth dupe
@@ -37,8 +37,9 @@ def dedup_nth_dup(arr, n)
 				@arr.uniq.each_index do |ui|	
 					@arr.each_index do |oi|
 						if @arr[oi] == @arr.uniq[ui]
-							@dupcountarray[ui] += 1
-							
+							until @dupcountarray[ui] > n do	
+								@dupcountarray[ui] += 1
+							end	
 					#store/associate last counter element for each element of dupcountarray
 					#interrupt loop when any counter array element reaches n and take note of index oi at that point
 					# as the final index for the dupe I want?
@@ -50,9 +51,8 @@ def dedup_nth_dup(arr, n)
 				end	
 					
 				
-				
 					@arr.each_index do |oi|
-						@dupcountarray.each do |di|
+						@dupcountarray.each_index do |di|
 							# prints two columns
 							# first col. is index of either the element if it's unique in the original array
 							# or the index of the nth or last dupe of a number in the array, whichever comes first
@@ -66,8 +66,9 @@ def dedup_nth_dup(arr, n)
 				
 			
 		end
+	end
 end
 
 array = []
-array.dedup_nth_dup([1,1,1,2,2,5,6,7,7,8], 4)
+array.dedup_nth_dup([1,1,1,2,4,5,6,7,7], 2)
 
