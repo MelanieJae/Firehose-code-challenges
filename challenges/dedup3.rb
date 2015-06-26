@@ -55,8 +55,10 @@ def dedup_nth_dup(arr, n)
 						@dupcountarray.each_index do |di|
 							# prints two columns
 							# first col. is index of either the element if it's unique in the original array
-							# or the index of the nth or last dupe of a number in the array, whichever comes first
+							# or the index of the nth or last dupe of a number in the array. 
 							# second col. is the duplicated element.
+							# doesn't always return "whichever comes first" if there are >n duplicates of one number
+							# it still returns the last duplicate b/c of rindex
 
 							 if di > 1
 							  	puts "#{@arr.rindex { |x| x == @arr[oi]}}, #{@arr[oi]}"
@@ -70,5 +72,5 @@ def dedup_nth_dup(arr, n)
 end
 
 array = []
-array.dedup_nth_dup([1,1,1,2,4,5,6,7,7], 2)
+array.dedup_nth_dup([1,1,1,2,4,5,6,7,7], 3)
 
