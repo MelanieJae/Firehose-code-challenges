@@ -3,7 +3,7 @@ public
 
 #leaves only nth or last dupe, whichever comes first
 def dedup_nth_dup(arr, n)
-	@arr = arr
+	
 	@dupcountarray = []
 	#check for duplicates
 	
