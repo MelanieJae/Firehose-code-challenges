@@ -68,10 +68,9 @@ class Stack
         while list
             list = list.next_node.push(list.value)
             reverse_list(list.next_node)
-            list.pop
         end
 
-    return list
+    return list.value.pop
     end
     
 end
