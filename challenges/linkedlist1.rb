@@ -64,7 +64,7 @@ class Stack
     #   end
 
     def reverse_list(list)
-    
+        
         while list
             list = list.next_node.push(list.value)
             reverse_list(list.next_node)
