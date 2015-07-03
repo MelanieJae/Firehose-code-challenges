@@ -54,13 +54,10 @@ class Stack
     #   look at the next node 
     #   if next node != nil then
     #      do above again (recursive step)
-    #   
-    #     
-    #   else
-    #       extract ('pop') the first item in the stack containing the values separated from the node
-    #       add that popped value to a new final list via the print_values method
-    #       repeat above two steps until there are no more values
-    #       return that series of values
+    #   extract ('pop') the first item in the stack containing the values separated from the node
+    #   add that popped value to a new final list via the print_values method
+    #   repeat above two steps until there are no more values
+    #   return that series of values
     #   end
 
     def reverse_list(list)
@@ -68,9 +65,10 @@ class Stack
         while list
             list = list.next_node.push(list.value)
             reverse_list(list.next_node)
+            list.value.pop
         end
 
-    return list.value.pop
+    return list
     end
     
 end
@@ -83,4 +81,4 @@ print_values(node3)
 puts "-------"
 revlist = Stack.new
 revlist = reverse_list(node3)
-print_values(revlist)
+print_values(revlist.node)
