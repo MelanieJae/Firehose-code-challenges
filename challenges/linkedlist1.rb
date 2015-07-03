@@ -81,4 +81,4 @@ print_values(node3)
 puts "-------"
 revlist = Stack.new
 revlist = reverse_list(node3)
-print_values(revlist.node)
+self.print_values(revlist.node)
